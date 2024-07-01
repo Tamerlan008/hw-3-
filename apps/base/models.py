@@ -33,10 +33,97 @@ class Base(models.Model):
         max_length=255,
         verbose_name="Адрес"
     )
-    
+
     def __str__(self) -> str:
         return self.title
     
     class Meta:
         verbose_name = "Настройка сайта"
         verbose_name_plural = "Настройки сайта"
+        
+        
+class Peopular_category(models.Model):
+    title = models.CharField(
+        max_length=255,
+        verbose_name="Название блюда"
+    )
+    description = models.CharField(
+        max_length=255,
+        verbose_name="Описание блюда"
+    )
+    photo = models.ImageField(
+        upload_to="popular_category/",
+        verbose_name="Фото блюда"
+    )
+    
+    def str(self) -> str:
+        return self.title
+    
+    class Meta:
+        verbose_name = "Популярное категория"
+        verbose_name_plural = "Популярное категория"
+        
+class Our_chef(models.Model):
+    name = models.CharField(
+        max_length=255,
+        verbose_name="Имя Шеф Повара"
+    )
+    type = models.CharField(
+        max_length=255,
+        verbose_name="Тип повара"
+    )
+    photo = models.ImageField(
+        upload_to='photo_chef/',
+        verbose_name="Фото повара"
+    )
+    facebook = models.URLField(
+        verbose_name="facebook - повара",
+        blank=True, null=True
+    )
+    youtube = models.URLField(
+        verbose_name="youtube - повара",
+        blank=True, null=True
+    )
+    
+    def __str__(self) -> str:
+        return self.name
+    
+    class Meta: 
+        verbose_name = "Повар"
+        verbose_name_plural = "Повара"
+        
+class News(models.Model):
+    image = models.ImageField(
+        upload_to='news/',
+        verbose_name='Фото'
+    )
+    title = models.CharField(
+        max_length=155,
+        verbose_name='Заголовка'
+    )
+    descriptions = models.TextField(
+        verbose_name='Описание'
+    )
+    date_to = models.CharField(
+        max_length=155,
+        verbose_name='Дата создание 1'
+    )
+    date_form = models.CharField(
+        max_length=155,
+        verbose_name='Дата создание 2'
+    )
+    food1 = models.CharField(
+        max_length=155,
+        verbose_name='Еда 1'
+    )
+    food2 = models.CharField(
+        max_length=155,
+        verbose_name='Еда 2'
+    )
+
+    
+    def __str__(self) -> str:
+        return self.title
+    
+    class Meta:
+        verbose_name_plural = "Новости"
